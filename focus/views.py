@@ -65,3 +65,27 @@ def comment(request,article_id):
             article.comment_num += 1
             article.save()
     return redirect("/focus/"+str(article_id))
+
+@login_required
+def favorate(request,article_id):
+    user = request.user
+    article = get_object_or_404(Article,id=article_id)
+    if request.method == 'GET' :
+        #article.user.add(user)
+        article.keep_num += 1
+        article.save()
+    return redirect("/focus/"+str(article_id))
+
+@login_required
+def poll(request,article_id):
+    article = get_object_or_404(Article,id=article_id)
+    user = request.user
+    polled_users =  Poll.objects.filter(article_id=article_id)
+    if user in polled_users:
+        return redirect("/focus/"+str(article_id))
+    else:
+
+        article.poll_num += 1
+        article.save()
+        return redirect("/focus/"+str(article_id))
+
