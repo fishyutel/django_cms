@@ -84,7 +84,7 @@ def poll(request,article_id):
     if user in polled_users:
         return redirect("/focus/"+str(article_id))
     else:
-
+        #p = Poll(user=)
         article.poll_num += 1
         article.save()
         return redirect("/focus/"+str(article_id))

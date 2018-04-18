@@ -9,4 +9,5 @@ urlpatterns = [
     path('<int:article_id>',views.article,name='article'),
     path('<int:article_id>/comment/',views.comment,name='comment'),
     path('<int:article_id>/favorate/',views.favorate,name='favorate'),
+    path('<int:article_id>/poll/',views.poll,name='poll'),
 ]
